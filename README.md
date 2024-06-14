@@ -4,6 +4,7 @@ This is a metadata server for a distributed file system that supports concurrent
 OS : Ubuntu 20.04.6 LTS x86_64
 
 Supported features are as follows:
+=====================================================================================================
 open() O_RDONLY, O_APPEND,O_EXCL,O_CREAT,O_WRONLY,O_RDWR,O_DIRECTORY
 creat();
 write();
@@ -34,8 +35,9 @@ chmod +x cephadm
 
 ./cephadm add-repo --release reef
 
-
 apt-get install gcc g++ make autoconf automake libtool pkg-config cmake cmake-curses-gui libsnappy-dev libgflags-dev libgoogle-glog-dev libmpich-dev mpich librados-dev libfuse3-dev
+
+install ceph
 ==========================================================
 If you haven't installed Ceph, please follow the steps below. If it's already installed, please skip.
 
@@ -54,19 +56,18 @@ ceph orch daemon add osd hostname:/dev/vdb
 ceph osd pool create data 128 128
 
 ceph osd pool create metadata 128 128
-=========================================================
 
 create ceph pool
+=========================================================
+
 
 ceph osd pool create data 128 128
 
 ceph osd pool create metadata 128 128
 
-
+configure hpfs-srvr host(meta server)
 =========================================================
 
-
-configure hpfs-srvr host(meta server)
 
 set_ip.sh -ip xxx.xxx.xxx.xxx -count n 
 
@@ -78,9 +79,10 @@ If successful, it will create a file /etc/fsconf/msrv.conf
 
 You need to copy the Ceph configuration file ceph.conf to the directory /etc/fsconf on each hpfs-srvr host, and also copy the ceph.conf file to the directory /etc/ceph on the on each hpfs-srvr host, Because hpfs-srvr needs to access Ceph through RADOS.
 
+configure hfs (client)
 =========================================================
 
-configure hfs (client)
+
 
 
 
@@ -90,9 +92,8 @@ If successful, it will create a file /etc/fsconf/msrv.conf
 
 You need to copy the Ceph configuration file ceph.conf to the directory /etc/fsconf on each hfs host, and also copy the ceph.conf file to the directory /etc/ceph on the on each hfs host, Because hfs needs to access Ceph through RADOS.
 
-
+start hpfs-srvr and mount fs
 =========================================================
-
 
 start hpfs-srvr:
 
