@@ -56,6 +56,16 @@ ceph osd pool create data 128 128
 ceph osd pool create metadata 128 128
 =========================================================
 
+create ceph pool
+
+ceph osd pool create data 128 128
+
+ceph osd pool create metadata 128 128
+
+
+=========================================================
+
+
 configure hpfs-srvr host(meta server)
 
 set_ip.sh -ip xxx.xxx.xxx.xxx -count n 
